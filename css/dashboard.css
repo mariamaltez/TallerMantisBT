@@ -1,0 +1,15 @@
+.row-1 {
+	margin-bottom: 50px;
+}
+.row-2, .row-3 {
+	text-align: center;
+    margin-bottom: 50px;
+    background-color: #eee;
+    padding: 20px 0 40px 0;
+}
+.nombres_proyectos {
+	margin-right: 40px;
+}
+h4 {
+	margin-bottom: 20px;
+}

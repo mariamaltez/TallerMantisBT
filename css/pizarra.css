@@ -1,0 +1,123 @@
+body {
+    background-image: url('../images/pizarra.png');
+    background-position: initial;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.inline{
+    display: inline-block;;
+}
+.board .column {
+    /*background: #E2E4E6;*/
+    /*background: #f781ff;*/
+    border-radius: 10px;
+    box-sizing: border-box;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-height: 100%;
+    position: relative;
+    white-space: normal;
+    margin: 5px;
+    padding-bottom: 25px;
+}
+.column:first-child {
+    margin-left: -35px;
+}
+.board .column .tareas {
+    min-height: 50px;
+ }
+.board .column .tareas .tarea {
+    background: #fff;
+    border-radius: 5px;
+    padding: 3px;
+    padding-bottom: 4px;
+    height: auto;
+    margin-bottom: 15px;
+    cursor: pointer;
+    position: relative;
+    min-height: 130px;
+    padding-bottom: 5px;
+}
+.title-column {
+    background: #f5f5f5;
+    padding: 4px 10px;
+    border-radius: 5px;
+    text-transform: capitalize;
+}
+.subtitle-project {
+    background: rgba(0,0,0,.4);
+    color: #fff;
+    padding: 10px;
+    border-radius: 15px;
+    padding-left: 40px;
+}
+.board .column .tareas .tarea.ui-sortable-helper {
+     -webkit-transform: scale(0.9);
+    -moz-transform: scale(0.9);
+    -o-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+    opacity: 0.8;
+}
+.tarea hr {
+    margin: 0;
+    width: 30%;
+    height: 6px;
+    background: #ff0000;
+    border: none;
+    border-radius: 10px;
+}
+.tarea .author {
+    font-size: 10px;
+}
+.tarea .descripcion {
+    font-size: 11px;
+    text-transform: capitalize;
+}
+.tarea .tiempo {
+    font-size: 11px;
+    margin-bottom: -10px;
+    text-align: right;
+}
+
+
+.tarea .btnEditar {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+.tarea .btnEliminar{
+    position: absolute;
+    bottom: 5px;
+    right: 32px;
+}
+.tarea .btnAddTime{
+    position: absolute;
+    bottom: 5px;
+    right: 59px;
+}
+.tarea .nombre_tarea{
+    text-transform: capitalize;
+}
+.title-project {
+    background: rgba(0, 0, 0, .4);
+    color: #fff;
+    border-radius: 14px;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
