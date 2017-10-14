@@ -61,7 +61,7 @@ $(document).ready(function(){
 		if (n != ''){
 			if (!isNaN(n)){
 				var plantilla = '<div class="form-group ccolumna"><label for="columna-$$n$$">Nombre Columna Nº $$n$$</label><input type="text" class="form-control" id="columna-$$n$$" placeholder="Nº Columnas" name="columna-$$n$$"></div>';
-				for (var i = parseInt(n); i >= 1; i--) {
+				for (var i = parseInt(n,10); i >= 1; i--) {
 					aux =  plantilla;
 					aux =  aux.replace(/\$\$n\$\$/g,i);
 					$(aux).insertAfter('#ncol');

@@ -14,10 +14,10 @@ class database
 	{
 		if(!isset($this->conexion))
 		{
-			$username = "";
-			$password = "";
-			$hostname = "localhost";
-			$base = "3m";
+			$username = '';
+			$password = '';
+			$hostname = 'localhost';
+			$base = '3m';
 			$this->conexion = (mysqli_connect($hostname, $username, $password, $base)) or die(mysqli_error());
 			mysqli_set_charset($this->conexion,'utf8');
 		}
@@ -55,14 +55,14 @@ class login extends database
 	{
 		$md5_password = md5($password);
 		$this->conectar();
-		$query = $this->ejecuta_query("SELECT 1 AS respuesta FROM user WHERE username='$user' and password='$md5_password'");
+		$query = $this->ejecuta_query('SELECT 1 AS respuesta FROM user WHERE username="$user" and password="$md5_password"');
 		$this->desconectar();
 		$respuesta = 0;
 		if (mysqli_num_rows($query) > 0)
 		{
 			while($row=mysqli_fetch_array($query,MYSQLI_ASSOC))
 			{
-				$respuesta = $row["respuesta"];
+				$respuesta = $row['respuesta'];
 			}
 			mysqli_free_result($query);
 		} 
@@ -78,7 +78,7 @@ class Project extends database
 	public function getProjects()
 	{
 		$this->conectar();
-		$query = $this->ejecuta_query("SELECT id,nombre FROM project");
+		$query = $this->ejecuta_query('SELECT id,nombre FROM project');
 		$this->desconectar();
 		if (mysqli_num_rows($query) > 0)
 		{
@@ -96,7 +96,7 @@ class Project extends database
 	public function getAllProjects()
 	{
 		$this->conectar();
-		$query = $this->ejecuta_query("SELECT a.id, a.nombre, a.descripcion, a.columnas, a.color, a.estado, b.username  FROM project a JOIN user b ON a.propietario = b.id");
+		$query = $this->ejecuta_query('SELECT a.id, a.nombre, a.descripcion, a.columnas, a.color, a.estado, b.username  FROM project a JOIN user b ON a.propietario = b.id');
 		$this->desconectar();
 		if (mysqli_num_rows($query) > 0)
 		{
@@ -113,7 +113,7 @@ class Project extends database
 	}
 	public function getAutores(){
 		$this->conectar();
-		$query = $this->ejecuta_query("SELECT username FROM user");
+		$query = $this->ejecuta_query('SELECT username FROM user');
 		$this->desconectar();
 		if (mysqli_num_rows($query) > 0)
 		{
@@ -128,12 +128,12 @@ class Project extends database
 			return null;
 		}
 	}
-	public function moveTarea($idTarea = NULL, $idColumn = NULL, $idproject)
+	public function moveTarea($idproject, $idTarea = NULL, $idColumn = NULL)
 	{
 		$this->conectar();
-		$query = $this->ejecuta_query("UPDATE tarea SET columna='$idColumn' WHERE id='$idTarea' and id_project='$idproject'");
+		$query = $this->ejecuta_query('UPDATE tarea SET columna="$idColumn" WHERE id="$idTarea" and id_project="$idproject"');
 		$this->desconectar();
-		if ($query == 1){
+		if ($query === 1){
 			return $query;
 		}else{
 			return null;
@@ -142,9 +142,9 @@ class Project extends database
 	public function updateTarea($nombre = NULL, $descripcion = NULL, $autor = NULL, $idTarea = NULL, $idproject = NULL)
 	{
 		$this->conectar();
-		$query = $this->ejecuta_query("UPDATE tarea SET nombre='$nombre', descripcion='$descripcion', propietario=(SELECT id FROM user WHERE username='$autor') WHERE id='$idTarea' and id_project='$idproject'");
+		$query = $this->ejecuta_query('UPDATE tarea SET nombre="$nombre", descripcion="$descripcion", propietario=(SELECT id FROM user WHERE username="$autor") WHERE id="$idTarea" and id_project="$idproject"');
 		$this->desconectar();
-		if ($query == 1){
+		if ($query === 1){
 			return $query;
 		}else{
 			return null;
@@ -154,9 +154,9 @@ class Project extends database
 	public function crearTarea($nombre = NULL, $descripcion = NULL, $autor = NULL, $idproject = NULL)
 	{
 		$this->conectar();
-		$query = $this->ejecuta_query("INSERT INTO tarea (id_project, nombre, descripcion, columna, propietario, estado)  VALUES ('$idproject','$nombre','$descripcion',1,(SELECT id FROM user WHERE username='$autor'),1)");
+		$query = $this->ejecuta_query('INSERT INTO tarea (id_project, nombre, descripcion, columna, propietario, estado)  VALUES ("$idproject","$nombre","$descripcion",1,(SELECT id FROM user WHERE username="$autor"),1)');
 		$this->desconectar();
-		if ($query == 1){
+		if ($query === 1){
 			return $query;
 		}else{
 			return null;
@@ -165,9 +165,9 @@ class Project extends database
 	public function getProject($idProject = NULL)
 	{
 		$this->conectar();
-		$projectInfo = $this->ejecuta_query("SELECT * FROM project WHERE id='$idProject'");
-		$tareasProject = $this->ejecuta_query("SELECT a.id, a.nombre, a.descripcion, a.columna, b.username, b.perfil, a.tiempo FROM (SELECT * FROM tarea WHERE id_project='$idProject') a JOIN user b on a.propietario = b.id;");
-		$columnsName = $this->ejecuta_query("SELECT * FROM columnas WHERE id_project = '$idProject' ORDER BY orden;");
+		$projectInfo = $this->ejecuta_query('SELECT * FROM project WHERE id="$idProject"');
+		$tareasProject = $this->ejecuta_query('SELECT a.id, a.nombre, a.descripcion, a.columna, b.username, b.perfil, a.tiempo FROM (SELECT * FROM tarea WHERE id_project="$idProject") a JOIN user b on a.propietario = b.id');
+		$columnsName = $this->ejecuta_query('SELECT * FROM columnas WHERE id_project = "$idProject" ORDER BY orden');
 		$this->desconectar();
 		$arr = [];
 		if (mysqli_num_rows($projectInfo) > 0)
@@ -199,36 +199,35 @@ class Project extends database
 	public function crearProyecto($nombre = NULL, $descripcion = NULL, $color = NULL, $columnas = NULL, $autor = NULL, $nombresColumnas = NULL)
 	{
 		$this->conectar();
-		$query = $this->ejecuta_query("INSERT INTO project(nombre, descripcion, columnas, color, estado, propietario) VALUES ('$nombre', '$descripcion', '$columnas', '$color', 1, (SELECT id FROM user WHERE username='$autor'))");
-		$query = $this->ejecuta_query("SELECT max(id) AS maximo FROM project");
+		$query = $this->ejecuta_query('INSERT INTO project(nombre, descripcion, columnas, color, estado, propietario) VALUES ("$nombre", "$descripcion", "$columnas", "$color", 1, (SELECT id FROM user WHERE username="$autor"))');
+		$query = $this->ejecuta_query('SELECT max(id) AS maximo FROM project');
 		$this->desconectar();
 		$respuesta = 0;
 		if (mysqli_num_rows($query) > 0)
 		{
 			while($row=mysqli_fetch_array($query,MYSQLI_ASSOC))
 			{
-				$respuesta = $row["maximo"];
+				$respuesta = $row['maximo'];
 			}
 			mysqli_free_result($query);
 		} 
-		if ($respuesta == 0) {
+		if ($respuesta === 0) {
 			return 0;
-			die();
 		}
 		for ($i = 1; $i <= $columnas; $i++) {
-				$nombreCol = $nombresColumnas["columna-".$i];
-				$query = $this->ejecuta_query("INSERT INTO columnas(id_project, nombre_columna, orden) VALUES ('$respuesta', '$nombreCol', '$i')");
+				$nombreCol = $nombresColumnas['columna-'.$i];
+				$query = $this->ejecuta_query('INSERT INTO columnas(id_project, nombre_columna, orden) VALUES ("$respuesta", "$nombreCol", "$i")');
 		}
 		return 1;
 	}
 	public function deleteProject($id = NULL)
 	{
 		$this->conectar();
-		$query = $this->ejecuta_query("DELETE FROM project WHERE id='$id'");
-		$query = $this->ejecuta_query("DELETE FROM tarea WHERE id_project='$id'");
-		$query = $this->ejecuta_query("DELETE FROM columnas WHERE id_project='$id'");
+		$query = $this->ejecuta_query('DELETE FROM project WHERE id="$id"');
+		$query = $this->ejecuta_query('DELETE FROM tarea WHERE id_project="$id"');
+		$query = $this->ejecuta_query('DELETE FROM columnas WHERE id_project="$id"');
 		$this->desconectar();
-		if ($query == 1){
+		if ($query === 1){
 			return $query;
 		}else{
 			return null;
@@ -237,9 +236,9 @@ class Project extends database
 	public function deleteTarea($id = NULL)
 	{
 		$this->conectar();
-		$query = $this->ejecuta_query("DELETE FROM tarea WHERE id='$id'");
+		$query = $this->ejecuta_query('DELETE FROM tarea WHERE id="$id"');
 		$this->desconectar();
-		if ($query == 1){
+		if ($query === 1){
 			return $query;
 		}else{
 			return null;
@@ -249,9 +248,9 @@ class Project extends database
 	public function addHoraTarea($horas = NULL, $id = NULL)
 	{
 		$this->conectar();
-		$query = $this->ejecuta_query("UPDATE tarea set tiempo = (tiempo + '$horas') WHERE id='$id'");
+		$query = $this->ejecuta_query('UPDATE tarea set tiempo = (tiempo + "$horas") WHERE id="$id"');
 		$this->desconectar();
-		if ($query == 1){
+		if ($query === 1){
 			return $query;
 		}else{
 			return null;

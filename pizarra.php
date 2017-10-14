@@ -1,13 +1,13 @@
 <?php
 session_start();
-if (!isset($_SESSION["user"]) or empty($_SESSION["user"])) {
-    header("Location: login.php");
+if (!isset($_SESSION['user']) or empty($_SESSION['user'])) {
+    header('Location: login.php');
         die();
 }
-$project_id = $_GET["project"];
+$project_id = $_GET['project'];
 if (!isset($project_id) or empty($project_id))
 {
-    header("Location: dashboard.php");
+    header('Location: dashboard.php');
     die();
 } 
 ?>
