@@ -7,7 +7,7 @@ include('modelo/db.php');
 $user = $_POST['user_name'];
 $password = $_POST['password'];
 
-if (!isset($user) or empty($user) or !isset($password) or empty($password))
+if (!isset($user) || empty($user) || !isset($password) || empty($password))
 {
 	header('Location: login.php');
 	die();

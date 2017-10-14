@@ -15,10 +15,10 @@ class database
 		if(!isset($this->conexion))
 		{
 			$username = '';
-			$password = '';
+			$password = empty;
 			$hostname = 'localhost';
 			$base = '3m';
-			$this->conexion = (mysqli_connect($hostname, $username, $password, $base)) or die(mysqli_error());
+			$this->conexion = (mysqli_connect($hostname, $username, $password, $base)) || die(mysqli_error());
 			mysqli_set_charset($this->conexion,'utf8');
 		}
 	}
