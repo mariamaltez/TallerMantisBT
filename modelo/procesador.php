@@ -1,5 +1,5 @@
 <?php
-include("db.php");
+include"db.php";
 $controlador = $_GET["controlador"];
 $accion = $_GET["accion"];
 
