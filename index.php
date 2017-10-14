@@ -6,5 +6,3 @@ if (!isset($_SESSION["user"]) or empty($_SESSION["user"])) {
 	die();
 }
 header("Location: dashboard.php");
-
-?>

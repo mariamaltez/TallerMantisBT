@@ -6,7 +6,6 @@ if (!isset($_SESSION["user"]) or empty($_SESSION["user"])) {
 }
 session_destroy();
 
-sleep(5);
+
 header("Location: login.php?codigo=2");
 
-?>
