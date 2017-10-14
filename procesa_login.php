@@ -14,6 +14,9 @@ if (!isset($user) or empty($user) or !isset($password) or empty($password))
 }
 
 //se sacan los ; para evitar el sql injection
+/* aunque s ehaya tomado esta medida el kiuwan lo reconoce como si
+ * no se hubiera tomado medidas para el SQL injection
+ */
 $user = str_replace(';','',$user);
 $password = str_replace(';','',$password);
 

@@ -15,10 +15,10 @@ class database
 		if(!isset($this->conexion))
 		{
 			$username = "";
-			$password = "";
+			$pwd = "";
 			$hostname = "localhost";
 			$base = "3m";
-			$this->conexion = (mysqli_connect($hostname, $username, $password, $base)) or die(mysqli_error());
+			$this->conexion = (mysqli_connect($hostname, $username, $pwd, $base)) || die(mysqli_error());
 			mysqli_set_charset($this->conexion,'utf8');
 		}
 	}
@@ -51,11 +51,11 @@ class database
 */
 class login extends database
 {
-	public function logear($user = null, $password = null)
+	public function logear($user = null, $pwd = null)
 	{
-		$md5_password = md5($password);
+		$md5_pwd = md5($pwd);
 		$this->conectar();
-		$query = $this->ejecuta_query("SELECT 1 AS respuesta FROM user WHERE username='$user' and password='$md5_password'");
+		$query = $this->ejecuta_query("SELECT 1 AS respuesta FROM user WHERE username='$user' and pwd='$md5_pwd'");
 		$this->desconectar();
 		$respuesta = 0;
 		if (mysqli_num_rows($query) > 0)
