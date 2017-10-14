@@ -29,3 +29,4 @@ if ($aux == 1){
 }else{
 	header("Location: login.php?codigo=1");
 }
+/*echo*/
