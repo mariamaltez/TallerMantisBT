@@ -14,19 +14,11 @@ class database
 	{
 		if(!isset($this->conexion))
 		{
-<<<<<<< HEAD
 			$username = "";
 			$pwd = "";
 			$hostname = "localhost";
 			$base = "3m";
 			$this->conexion = (mysqli_connect($hostname, $username, $pwd, $base)) || die(mysqli_error());
-=======
-			$username = '';
-			$password = empty;
-			$hostname = 'localhost';
-			$base = '3m';
-			$this->conexion = (mysqli_connect($hostname, $username, $password, $base)) || die(mysqli_error());
->>>>>>> 609ccfa458f5b7f7a120bed89c6367d55e87f441
 			mysqli_set_charset($this->conexion,'utf8');
 		}
 	}
@@ -59,19 +51,11 @@ class database
 */
 class login extends database
 {
-<<<<<<< HEAD
 	public function logear($user = null, $pwd = null)
-=======
-	public function logear($user = null, $password = null)
->>>>>>> 609ccfa458f5b7f7a120bed89c6367d55e87f441
 	{
 		$md5_pwd = md5($pwd);
 		$this->conectar();
-<<<<<<< HEAD
 		$query = $this->ejecuta_query("SELECT 1 AS respuesta FROM user WHERE username='$user' and pwd='$md5_pwd'");
-=======
-		$query = $this->ejecuta_query('SELECT 1 AS respuesta FROM user WHERE username="$user" and password="$md5_password"');
->>>>>>> 609ccfa458f5b7f7a120bed89c6367d55e87f441
 		$this->desconectar();
 		$respuesta = 0;
 		if (mysqli_num_rows($query) > 0)
@@ -144,11 +128,7 @@ class Project extends database
 			return null;
 		}
 	}
-<<<<<<< HEAD
 	public function moveTarea($idTarea = null, $idColumn = null, $idproject)
-=======
-	public function moveTarea($idproject, $idTarea = null, $idColumn = null)
->>>>>>> 609ccfa458f5b7f7a120bed89c6367d55e87f441
 	{
 		$this->conectar();
 		$query = $this->ejecuta_query('UPDATE tarea SET columna="$idColumn" WHERE id="$idTarea" and id_project="$idproject"');
@@ -278,18 +258,3 @@ class Project extends database
 	}
 
 }
-<<<<<<< HEAD
-=======
-
-
-
-
-
->>>>>>> 609ccfa458f5b7f7a120bed89c6367d55e87f441
-
-
-
-
-
-
-
