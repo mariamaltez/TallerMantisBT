@@ -94,7 +94,7 @@ $(document).ready(function(){
 	  		if (data.status == 'ok'){
 	  			console.log(data);
 	  			$.each(data.mensaje.columnsName, function (index, value){
-	  				size = Math.trunc(12/parseInt(data.mensaje.columnsName.length))
+	  				size = Math.trunc(12/parseInt(data.mensaje.columnsName.length,10))
 	  				aux = plantillaColumna;
 	  				aux =  aux.replace(/\$\$COLUMN\$\$/g,value.orden);
 	  				aux =  aux.replace(/\$\$SIZE\$\$/g, size);

@@ -1,35 +1,41 @@
 <?php
+<<<<<<< HEAD
 include"db.php";
 $controlador = $_GET["controlador"];
 $accion = $_GET["accion"];
+=======
+include('db.php');
+$controlador = $_GET['controlador'];
+$accion = $_GET['accion'];
+>>>>>>> 609ccfa458f5b7f7a120bed89c6367d55e87f441
 
-if (!isset($controlador) or empty($controlador))
+if (!isset($controlador) || empty($controlador))
 {
 	echo '{"status":"error","mensaje":"no viene controlador"}';
 	die();
 } 
-if (!isset($accion) or empty($accion))
+if (!isset($accion) || empty($accion))
 {
 	echo '{"status":"error","mensaje":"no viene accion"}';
 	die();
 } 
 
-if ($controlador == 'projectController')
+if ($controlador === 'projectController')
 {
 	$projects = new Project();
-	if ($accion == 'getProjects'){
+	if ($accion === 'getProjects'){
 		$tsArray = $projects->getProjects();
 		echo '{"status":"ok","mensaje":'.json_encode($tsArray,true).'}';
 		die();
 	}
-	if ($accion == 'getAllProjects'){
+	if ($accion === 'getAllProjects'){
 		$tsArray = $projects->getAllProjects();
 		echo '{"status":"ok","mensaje":'.json_encode($tsArray,true).'}';
 		die();
 	}
-	if ($accion == 'getProject'){
+	if ($accion === 'getProject'){
 		$idproject = $_GET["idproject"];
-		if (!isset($idproject) or empty($idproject))
+		if (!isset($idproject) || empty($idproject))
 		{
 			echo '{"status":"error","mensaje":"no viene id de projecto"}';
 			die();
@@ -38,61 +44,61 @@ if ($controlador == 'projectController')
 		echo '{"status":"ok","mensaje":'.json_encode($tsArray,true).'}';
 		die();
 	}
-	if ($accion == 'moveTarea'){
+	if ($accion === 'moveTarea'){
 		$idTarea = $_GET["idTarea"];
 		$idColumn = $_GET["idColumn"];
 		$idproject = $_GET["idproject"];
-		if (!isset($idTarea) or empty($idTarea))
+		if (!isset($idTarea) || empty($idTarea))
 		{
 			echo '{"status":"error","mensaje":"no viene idTarea"}';
 			die();
 		} 
-		if (!isset($idColumn) or empty($idColumn))
+		if (!isset($idColumn) || empty($idColumn))
 		{
 			echo '{"status":"error","mensaje":"no viene idColumn"}';
 			die();
 		} 
-		if (!isset($idproject) or empty($idproject))
+		if (!isset($idproject) || empty($idproject))
 		{
 			echo '{"status":"error","mensaje":"no viene idproject"}';
 			die();
 		} 
-		$aux = $projects->moveTarea($idTarea, $idColumn, $idproject);
+		$aux = $projects->moveTarea($idproject, $idTarea, $idColumn);
 		echo '{"status":"ok","mensaje":'.$aux.'}';
 		die();
 	}
-	if ($accion == 'getAutores') {
+	if ($accion === 'getAutores') {
 		$tsArray = $projects->getAutores();
 		echo '{"status":"ok","mensaje":'.json_encode($tsArray,true).'}';
 		die();
 	}
-	if ($accion == 'updateTarea'){
-	 	$nombre = $_GET["nombre"];
-	 	$descripcion = $_GET["descripcion"];
-	 	$autor = $_GET["autor"];
-	 	$idproject = $_GET["idproject"];
-	 	$idTarea = $_GET["idTarea"];
-	 	if (!isset($nombre) or empty($nombre))
+	if ($accion === 'updateTarea'){
+	 	$nombre = $_GET['nombre'];
+	 	$descripcion = $_GET['descripcion'];
+	 	$autor = $_GET['autor'];
+	 	$idproject = $_GET['idproject'];
+	 	$idTarea = $_GET['idTarea'];
+	 	if (!isset($nombre) || empty($nombre))
 		{
 			echo '{"status":"error","mensaje":"no viene nombre"}';
 			die();
 		} 
-		if (!isset($descripcion) or empty($descripcion))
+		if (!isset($descripcion) || empty($descripcion))
 		{
 			echo '{"status":"error","mensaje":"no viene descripcion"}';
 			die();
 		} 
-		if (!isset($autor) or empty($autor))
+		if (!isset($autor) || empty($autor))
 		{
 			echo '{"status":"error","mensaje":"no viene autor"}';
 			die();
 		}
-		if (!isset($idproject) or empty($idproject))
+		if (!isset($idproject) || empty($idproject))
 		{
 			echo '{"status":"error","mensaje":"no viene idproject"}';
 			die();
 		} 
-		if (!isset($idTarea) or empty($idTarea))
+		if (!isset($idTarea) || empty($idTarea))
 		{
 			echo '{"status":"error","mensaje":"no viene idTarea"}';
 			die();
@@ -101,28 +107,28 @@ if ($controlador == 'projectController')
 		echo '{"status":"ok","mensaje":'.$aux.'}';
 		die();		
 	 }
-	 if ($accion == "crearTarea")
+	 if ($accion === "crearTarea")
 	 {
-	 	$nombre = $_GET["nombre"];
-	 	$descripcion = $_GET["descripcion"];
-	 	$autor = $_GET["autor"];
-	 	$idproject = $_GET["idproject"];
-	 	if (!isset($nombre) or empty($nombre))
+	 	$nombre = $_GET['nombre'];
+	 	$descripcion = $_GET['descripcion'];
+	 	$autor = $_GET['autor'];
+	 	$idproject = $_GET['idproject'];
+	 	if (!isset($nombre) || empty($nombre))
 		{
 			echo '{"status":"error","mensaje":"no viene nombre"}';
 			die();
 		} 
-		if (!isset($descripcion) or empty($descripcion))
+		if (!isset($descripcion) || empty($descripcion))
 		{
 			echo '{"status":"error","mensaje":"no viene descripcion"}';
 			die();
 		} 
-		if (!isset($autor) or empty($autor))
+		if (!isset($autor) || empty($autor))
 		{
 			echo '{"status":"error","mensaje":"no viene autor"}';
 			die();
 		}
-		if (!isset($idproject) or empty($idproject))
+		if (!isset($idproject) || empty($idproject))
 		{
 			echo '{"status":"error","mensaje":"no viene idproject"}';
 			die();
@@ -131,57 +137,57 @@ if ($controlador == 'projectController')
 		echo '{"status":"ok","mensaje":'.$aux.'}';
 		die();
 	 }
-	 if ($accion == "createProject")
+	 if ($accion === 'createProject')
 	 {
 	 	parse_str($_GET['datos'], $searcharray);
 
-	 	$nombre = $searcharray["nombre"];
-	 	$descripcion = $searcharray["descripcion"];
-	 	$color = $searcharray["color"];
-	 	$columnas = $searcharray["columnas"];
-	 	$autor = $searcharray["autor"];
+	 	$nombre = $searcharray['nombre'];
+	 	$descripcion = $searcharray['descripcion'];
+	 	$color = $searcharray['color'];
+	 	$columnas = $searcharray['columnas'];
+	 	$autor = $searcharray['autor'];
 	 	$nombresColumnas = array();
 
-	 	if (!isset($nombre) or empty($nombre))
+	 	if (!isset($nombre) || empty($nombre))
 		{
 			echo '{"status":"error","mensaje":"no viene nombre"}';
 			die();
 		} 
-		if (!isset($descripcion) or empty($descripcion))
+		if (!isset($descripcion) || empty($descripcion))
 		{
 			echo '{"status":"error","mensaje":"no viene descripcion"}';
 			die();
 		} 
-		if (!isset($color) or empty($color))
+		if (!isset($color) || empty($color))
 		{
 			echo '{"status":"error","mensaje":"no viene color"}';
 			die();
 		} 
-		if (!isset($columnas) or empty($columnas) or is_int ($columnas))
+		if (!isset($columnas) || empty($columnas) || is_int ($columnas))
 		{
 			echo '{"status":"error","mensaje":"error en columnas"}';
 			die();
 		} 
-		if (!isset($autor) or empty($autor))
+		if (!isset($autor) || empty($autor))
 		{
 			echo '{"status":"error","mensaje":"no viene autor"}';
 			die();
 		} 
 		for ($i = 1; $i <= $columnas; $i++) {
-			if (!isset($searcharray["columna-".$i]) or empty($searcharray["columna-".$i])){
+			if (!isset($searcharray['columna-'.$i]) || empty($searcharray['columna-'.$i])){
 				echo '{"status":"error","mensaje":"nombre de la columna Nº'.$i.' vacío"}';
 				die();
 			}
-		    $nombresColumnas["columna-".$i] = $searcharray["columna-".$i];
+		    $nombresColumnas['columna-'.$i] = $searcharray['columna-'.$i];
 		}
 		$aux = $projects->crearProyecto($nombre, $descripcion, $color, $columnas, $autor, $nombresColumnas);
 		echo '{"status":"ok","mensaje":'.$aux.'}';
 		die();
 	 }
-	 if ($accion == "deleteProject")
+	 if ($accion === 'deleteProject')
 	 {
-	 	$id = $_GET["id"];
-	 	if (!isset($id) or empty($id))
+	 	$id = $_GET['id'];
+	 	if (!isset($id) || empty($id))
 		{
 			echo '{"status":"error","mensaje":"no viene id"}';
 			die();
@@ -190,10 +196,10 @@ if ($controlador == 'projectController')
 		echo '{"status":"ok","mensaje":'.$aux.'}';
 		die();
 	 }
-	 if ($accion == "deleteTarea")
+	 if ($accion === 'deleteTarea')
 	 {
-	 	$id = $_GET["id"];
-	 	if (!isset($id) or empty($id))
+	 	$id = $_GET['id'];
+	 	if (!isset($id) || empty($id))
 		{
 			echo '{"status":"error","mensaje":"no viene id"}';
 			die();
@@ -203,16 +209,16 @@ if ($controlador == 'projectController')
 		die();
 
 	 }
-	 if($accion == "addHoraTarea")
+	 if($accion === 'addHoraTarea')
 	 {
-	 	$horas = $_GET["horas"];
-	 	$id = $_GET["id"];
-	 	if (!isset($horas) or empty($horas))
+	 	$horas = $_GET['horas'];
+	 	$id = $_GET['id'];
+	 	if (!isset($horas) || empty($horas))
 		{
 			echo '{"status":"error","mensaje":"no viene horas"}';
 			die();
 		} 
-	 	if (!isset($id) or empty($id))
+	 	if (!isset($id) || empty($id))
 		{
 			echo '{"status":"error","mensaje":"no viene id"}';
 			die();
@@ -222,6 +228,10 @@ if ($controlador == 'projectController')
 		die();
 	 }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 609ccfa458f5b7f7a120bed89c6367d55e87f441
 
 
 
