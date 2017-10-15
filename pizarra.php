@@ -4,6 +4,7 @@ if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
     header('Location: login.php');
         die();
 }
+$project_id = "";
 $project_id = $_GET['project'];
 if (!isset($project_id) || empty($project_id))
 {

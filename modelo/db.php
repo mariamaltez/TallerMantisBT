@@ -51,7 +51,7 @@ class database
 */
 class login extends database
 {
-	public function logear($user = NULL, $password = NULL)
+	public function logear($user = null, $password = null)
 	{
 		$md5_password = md5($password);
 		$this->conectar();
@@ -128,7 +128,7 @@ class Project extends database
 			return null;
 		}
 	}
-	public function moveTarea($idproject, $idTarea = NULL, $idColumn = NULL)
+	public function moveTarea($idproject, $idTarea = null, $idColumn = null)
 	{
 		$this->conectar();
 		$query = $this->ejecuta_query('UPDATE tarea SET columna="$idColumn" WHERE id="$idTarea" and id_project="$idproject"');
@@ -139,7 +139,7 @@ class Project extends database
 			return null;
 		}
 	}
-	public function updateTarea($nombre = NULL, $descripcion = NULL, $autor = NULL, $idTarea = NULL, $idproject = NULL)
+	public function updateTarea($nombre = null, $descripcion = null, $autor = null, $idTarea = null, $idproject = null)
 	{
 		$this->conectar();
 		$query = $this->ejecuta_query('UPDATE tarea SET nombre="$nombre", descripcion="$descripcion", propietario=(SELECT id FROM user WHERE username="$autor") WHERE id="$idTarea" and id_project="$idproject"');
@@ -151,7 +151,7 @@ class Project extends database
 		}
 
 	}
-	public function crearTarea($nombre = NULL, $descripcion = NULL, $autor = NULL, $idproject = NULL)
+	public function crearTarea($nombre = null, $descripcion = null, $autor = null, $idproject = null)
 	{
 		$this->conectar();
 		$query = $this->ejecuta_query('INSERT INTO tarea (id_project, nombre, descripcion, columna, propietario, estado)  VALUES ("$idproject","$nombre","$descripcion",1,(SELECT id FROM user WHERE username="$autor"),1)');
@@ -162,7 +162,7 @@ class Project extends database
 			return null;
 		}
 	}
-	public function getProject($idProject = NULL)
+	public function getProject($idProject = null)
 	{
 		$this->conectar();
 		$projectInfo = $this->ejecuta_query('SELECT * FROM project WHERE id="$idProject"');
@@ -196,7 +196,7 @@ class Project extends database
 			return $arr;
 		}
 	}
-	public function crearProyecto($nombre = NULL, $descripcion = NULL, $color = NULL, $columnas = NULL, $autor = NULL, $nombresColumnas = NULL)
+	public function crearProyecto($nombre = null, $descripcion = null, $color = null, $columnas = null, $autor = null, $nombresColumnas = null)
 	{
 		$this->conectar();
 		$query = $this->ejecuta_query('INSERT INTO project(nombre, descripcion, columnas, color, estado, propietario) VALUES ("$nombre", "$descripcion", "$columnas", "$color", 1, (SELECT id FROM user WHERE username="$autor"))');
@@ -220,7 +220,7 @@ class Project extends database
 		}
 		return 1;
 	}
-	public function deleteProject($id = NULL)
+	public function deleteProject($id = null)
 	{
 		$this->conectar();
 		$query = $this->ejecuta_query('DELETE FROM project WHERE id="$id"');
@@ -233,7 +233,7 @@ class Project extends database
 			return null;
 		}
 	}
-	public function deleteTarea($id = NULL)
+	public function deleteTarea($id = null)
 	{
 		$this->conectar();
 		$query = $this->ejecuta_query('DELETE FROM tarea WHERE id="$id"');
@@ -245,7 +245,7 @@ class Project extends database
 		}
 
 	}
-	public function addHoraTarea($horas = NULL, $id = NULL)
+	public function addHoraTarea($horas = null, $id = null)
 	{
 		$this->conectar();
 		$query = $this->ejecuta_query('UPDATE tarea set tiempo = (tiempo + "$horas") WHERE id="$id"');
@@ -258,9 +258,6 @@ class Project extends database
 	}
 
 }
-?>
-
-
 
 
 
