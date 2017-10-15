@@ -1,14 +1,7 @@
 <?php
-<<<<<<< HEAD
 include"db.php";
 $controlador = $_GET["controlador"];
 $accion = $_GET["accion"];
-=======
-include('db.php');
-$controlador = $_GET['controlador'];
-$accion = $_GET['accion'];
->>>>>>> 609ccfa458f5b7f7a120bed89c6367d55e87f441
-
 if (!isset($controlador) || empty($controlador))
 {
 	echo '{"status":"error","mensaje":"no viene controlador"}';
@@ -228,17 +221,3 @@ if ($controlador === 'projectController')
 		die();
 	 }
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 609ccfa458f5b7f7a120bed89c6367d55e87f441
-
-
-
-
-
-
-
-
-
-
