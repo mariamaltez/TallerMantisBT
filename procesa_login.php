@@ -2,12 +2,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-<<<<<<< HEAD
 include"modelo/db.php";
-=======
-include('modelo/db.php');
->>>>>>> 609ccfa458f5b7f7a120bed89c6367d55e87f441
-
 $user = $_POST['user_name'];
 $password = $_POST['password'];
 
@@ -33,7 +28,3 @@ if ($aux === 1){
 }else{
 	header('Location: login.php?codigo=1');
 }
-<<<<<<< HEAD
-/*echo*/
-=======
->>>>>>> 609ccfa458f5b7f7a120bed89c6367d55e87f441
