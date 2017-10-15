@@ -222,7 +222,7 @@ if ($controlador === 'projectController')
 		die();
 	 }
 }
-?>
+
 
 
 
